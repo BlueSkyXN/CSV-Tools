@@ -30,5 +30,14 @@ def main():
     df_filtered.to_csv(output_file, index=False, encoding=output_encoding)
     print('数据写入完成.')
 
+    # 为每个部门生成一个CSV文件
+    output_dir, output_filename = os.path.split(output_file)
+    output_basename, output_ext = os.path.splitext(output_filename)
+    for value in values:
+        df_value = df[df[column] == value]
+        output_file_value = os.path.join(output_dir, f"{output_basename}_{value}{output_ext}")
+        df_value.to_csv(output_file_value, index=False, encoding=output_encoding)
+        print(f"数据已写入 {output_file_value}")
+
 if __name__ == "__main__":
     main()
