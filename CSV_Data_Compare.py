@@ -1,14 +1,12 @@
 import pandas as pd
 import configparser
+import argparse
 
+# 从配置文件中读取参数
 def read_config(config_file):
-    # Create a config parser
     config = configparser.ConfigParser()
-
-    # Read the config file
     config.read(config_file)
 
-    # Now, we need to get the parameters from the config file
     file1_path = config.get('File1', 'path')
     file1_encoding = config.get('File1', 'encoding')
     file1_key = config.get('File1', 'key')
@@ -22,8 +20,15 @@ def read_config(config_file):
 
     return file1_path, file1_encoding, file1_key, file2_path, file2_encoding, file2_key, output_path, output_encoding
 
-# Here is where we use the read_config function to get the parameters from the config file
-file1_path, file1_encoding, file1_key, file2_path, file2_encoding, file2_key, output_path, output_encoding = read_config('CSV_Data_Compare.conf')
+# 使用 argparse 处理命令行参数
+parser = argparse.ArgumentParser(description='比较两个 CSV 文件。')
+parser.add_argument('-c', '--config', type=str, default='CSV_Data_Compare.conf', help='配置文件的路径。')
+args = parser.parse_args()
+
+# 使用命令行参数指定的配置文件，如果没有指定，则使用默认的配置文件
+config_file = args.config
+
+file1_path, file1_encoding, file1_key, file2_path, file2_encoding, file2_key, output_path, output_encoding = read_config(config_file)
 
 df1 = pd.read_csv(file1_path, encoding=file1_encoding)
 df2 = pd.read_csv(file2_path, encoding=file2_encoding)
