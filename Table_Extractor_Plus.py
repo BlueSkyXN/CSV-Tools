@@ -1,11 +1,19 @@
 import pandas as pd
 import configparser
 import os
+import argparse
+
+    # 创建命令行参数解析器
+    parser = argparse.ArgumentParser()
+    # 添加 "-c" 或 "--config" 参数，用于指定配置文件的路径
+    parser.add_argument("-c", "--config", help="Specify the path of the configuration file.", default=args.config)
+    # 解析命令行参数
+    args = parser.parse_args()
 
 def main():
     # 读取配置文件
     config = configparser.ConfigParser()
-    config.read('Table_Extractor.conf', encoding='utf-8')
+    config.read(args.config, encoding='utf-8')
 
     # 从配置文件中获取所需信息
     input_file = config.get('File', 'input_file', fallback=os.path.join(os.getcwd(), 'input.csv'))
