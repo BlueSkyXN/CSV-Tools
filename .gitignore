@@ -160,3 +160,4 @@ cython_debug/
 #.idea/
 *.csv
 Table_Extractor.conf
+CSV_Data_Compare.conf
