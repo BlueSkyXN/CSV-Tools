@@ -3,14 +3,19 @@ import configparser
 import os
 import argparse
 
+
+
+def main():
     # 创建命令行参数解析器
     parser = argparse.ArgumentParser()
     # 添加 "-c" 或 "--config" 参数，用于指定配置文件的路径
-    parser.add_argument("-c", "--config", help="Specify the path of the configuration file.", default=args.config)
+    parser.add_argument("-c", "--config", help="Specify the path of the configuration file.")
     # 解析命令行参数
     args = parser.parse_args()
+    # 如果没有提供配置文件路径，则使用默认路径
+    if args.config is None:
+        args.config = 'Table_Extractor.conf'  # 请替换为你的默认配置文件路径
 
-def main():
     # 读取配置文件
     config = configparser.ConfigParser()
     config.read(args.config, encoding='utf-8')
@@ -49,4 +54,5 @@ def main():
     print('不匹配的数据写入完成.')
 
 if __name__ == "__main__":
+
     main()
