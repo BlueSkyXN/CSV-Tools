@@ -161,3 +161,5 @@ cython_debug/
 *.csv
 Table_Extractor.conf
 CSV_Data_Compare.conf
+CSV_DataAnalysis.conf
+Output.xlsx
