@@ -44,7 +44,7 @@ def calculate_summary(data_last, data_current, dep_column, id_column, tag_unreso
     # Adding total row
     total_row = summary.sum(numeric_only=True)
     total_row[dep_column] = "总计"
-    summary = summary.append(total_row, ignore_index=True)
+    summary = pd.concat([summary, pd.DataFrame([total_row])]).fillna("")
 
     return summary, detailed_data
 
