@@ -41,7 +41,9 @@ def calculate_summary_per_dep(data_last, data_current, dep_column, id_column, ta
     # Adding total row
     total_row = summary.sum(numeric_only=True)
     total_row[dep_column] = "总计"
-    summary = pd.concat([summary, pd.DataFrame([total_row]).set_index(dep_column)]).fillna("").reset_index()
+    #summary = pd.concat([summary, pd.DataFrame([total_row]).set_index(dep_column)]).fillna("").reset_index()
+    total_row = pd.DataFrame([total_row])  # 将总计行转换为DataFrame
+    summary = pd.concat([summary, total_row], ignore_index=True).fillna("")  # 添加总计行
 
     return summary, detailed_data
 
