@@ -49,9 +49,10 @@ def calculate_summary_per_dep(data_last, data_current, dep_column, id_column, ta
 def write_to_excel_fixed(output_file_path, summary_dev, summary_non_dev, dev_detail_current, non_dev_detail_current, sheet_names):
     with pd.ExcelWriter(output_file_path, engine='openpyxl') as writer:
         summary_dev.to_excel(writer, index=False, sheet_name=sheet_names['S_name_1'])
-        summary_non_dev.to_excel(writer, index=False, sheet_name=sheet_names['S_name_2'])
-        dev_detail_current.to_excel(writer, index=False, sheet_name=sheet_names['S_name_3'])
+        dev_detail_current.to_excel(writer, index=False, sheet_name=sheet_names['S_name_2'])
+        summary_non_dev.to_excel(writer, index=False, sheet_name=sheet_names['S_name_3'])
         non_dev_detail_current.to_excel(writer, index=False, sheet_name=sheet_names['S_name_4'])
+
 
 # Main code execution
 config = configparser.ConfigParser()
