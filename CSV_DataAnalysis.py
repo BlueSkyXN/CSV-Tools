@@ -22,18 +22,18 @@ def calculate_summary_per_dep(data_last, data_current, dep_column, id_column, ta
     new_violations_records = data_current[data_current[id_column].isin(new_violations_ids)].copy()
 
     # Adding tags from config
-    unresolved_records['Tag_Unresolved'] = 1
-    new_violations_records['Tag_New'] = 1
+    unresolved_records[tag_unresolved] = 1
+    new_violations_records[tag_new] = 1
 
     detailed_data = pd.concat([unresolved_records, new_violations_records])
-    detailed_data[['Tag_Unresolved', 'Tag_New']] = detailed_data[['Tag_Unresolved', 'Tag_New']].fillna(0).astype(int)
+    detailed_data[[tag_unresolved, tag_new]] = detailed_data[[tag_unresolved, tag_new]].fillna(0).astype(int)
 
     # Calculating summary using a custom function per department
     def calculate_per_dep_group(group):
         return pd.Series({
             stat_names['Stat_1']: group[id_column].nunique(),
-            stat_names['Stat_2']: group[group['Tag_Unresolved'] == 1][id_column].nunique(),
-            stat_names['Stat_3']: group[group['Tag_New'] == 1][id_column].nunique()
+            stat_names['Stat_2']: group[group[tag_unresolved] == 1][id_column].nunique(),
+            stat_names['Stat_3']: group[group[tag_new] == 1][id_column].nunique()
         })
 
     summary = detailed_data.groupby(dep_column).apply(calculate_per_dep_group).reset_index()
