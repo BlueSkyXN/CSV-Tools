@@ -1,6 +1,7 @@
 import pandas as pd
 import configparser
 from openpyxl import Workbook
+import argparse
 
 # Function to read CSV data
 def read_csv(file_path, encoding):
@@ -56,9 +57,18 @@ def write_to_excel_fixed(output_file_path, summary_dev, summary_non_dev, dev_det
         non_dev_detail_current.to_excel(writer, index=False, sheet_name=sheet_names['S_name_4'])
 
 
+
+
 # Main code execution
+# Argument parser setup
+parser = argparse.ArgumentParser(description='CSV Data Analysis Tool')
+parser.add_argument('-c', '--config', type=str, default='CSV_DataAnalysis.conf', 
+                    help='Path to the configuration file. Default is CSV_DataAnalysis.conf in the current directory.')
+args = parser.parse_args()
+
+# Reading the configuration file specified by the user or the default one
 config = configparser.ConfigParser()
-config.read("CSV_DataAnalysis.conf", encoding='utf-8')
+config.read(args.config, encoding='utf-8')
 
 # Extracting required parameters from the configuration
 last_file_path = config.get('Files', 'Last_file_path') + config.get('Files', 'Last_file_name')
