@@ -164,3 +164,8 @@ CSV_Data_Compare.conf
 CSV_DataAnalysis.conf
 Output.xlsx
 *.exe
+
+# Test data and temporary files
+/tmp/
+test_*.csv
+output_*.csv
