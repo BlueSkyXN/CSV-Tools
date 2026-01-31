@@ -1,0 +1,30 @@
+# Git attributes for proper line ending handling
+* text=auto
+
+# Python files
+*.py text eol=lf
+
+# Configuration files
+*.conf text eol=lf
+
+# Documentation
+*.md text eol=lf
+*.txt text eol=lf
+
+# Shell scripts
+*.sh text eol=lf
+
+# Windows scripts
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.xlsx binary
+*.xls binary
+*.db binary
+*.sqlite binary

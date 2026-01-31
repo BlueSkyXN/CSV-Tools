@@ -1,0 +1,14 @@
+# CSV-Tools Dependencies
+# Core data processing
+pandas>=1.5.0
+openpyxl>=3.0.0
+
+# Database connectivity
+pymysql>=1.0.0
+
+# Progress bars
+tqdm>=4.65.0
+
+# Configuration parsing (built-in, but listed for clarity)
+# configparser (standard library)
+# argparse (standard library)
